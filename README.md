@@ -20,7 +20,7 @@ A full-stack web application for tracking personal income and expenses with AI-p
 ### 1. Clone the repository
 ```bash
 git clone <repository-url>
-cd finance-tracker
+cd finance-app-3
 ```
 
 ### 2. Backend Setup
