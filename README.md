@@ -101,6 +101,9 @@ For testing purposes, you can use the following demo account:
 - CSV export
 - AI budget insights
 - Dark/light mode
+- Mobile responsive
+- Fully Deployed
+- JWT Authentication
 
 ## API Endpoints
 
