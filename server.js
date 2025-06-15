@@ -4,13 +4,20 @@ const cors = require("cors");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const axios = require("axios");
+const path = require("path");
 require("dotenv").config();
 
 const app = express();
 app.use(express.json());
+
+// Update CORS for production
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://localhost:3001"],
+    origin: [
+      "http://localhost:3000", 
+      "http://localhost:3001",
+      process.env.FRONTEND_URL || "https://your-app-name.onrender.com"
+    ],
     credentials: true,
   })
 );
@@ -229,6 +236,15 @@ app.post("/api/ai-insight", auth, async (req, res) => {
       .json({ error: error.response?.data?.error?.message || error.message });
   }
 });
+
+// Serve static files from React build
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "client/build")));
+  
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client/build", "index.html"));
+  });
+}
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
