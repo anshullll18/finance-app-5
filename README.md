@@ -20,7 +20,7 @@ A full-stack web application for tracking personal income and expenses with AI-p
 ### 1. Clone the repository
 ```bash
 git clone <repository-url>
-cd finance-app-3
+cd repository-name
 ```
 
 ### 2. Backend Setup
@@ -87,6 +87,8 @@ For testing purposes, you can use the following demo account:
 - **Email**: demo@gmail.com
 - **Password**: demo
 - **Name**: demo
+## 🚀 Live Demo
+**Deployed Application**: https://finance-app-5-1.onrender.com
 
 ## Features
 
