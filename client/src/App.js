@@ -322,6 +322,35 @@ function App() {
           </div>
         </div>
 
+        <div className="charts">
+          <div className="chart">
+            <h3>Spending by Category</h3>
+            <PieChart width={600} height={400}>
+              <Pie
+                data={pieData}
+                cx="50%"
+                cy="50%"
+                labelLine={true}
+                outerRadius={80}
+                fill="#8884d8"
+                dataKey="value"
+                label={({ name, value }) => `${name}: $${value.toFixed(2)}`}
+              >
+                {pieData.map((entry, index) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={colors[index % colors.length]}
+                  />
+                ))}
+              </Pie>
+              <Tooltip
+                labelStyle={{ color: "black" }}
+                itemStyle={{ color: "#333" }}
+              />
+            </PieChart>
+          </div>
+        </div>
+
         <div className="monthly-stats">
           <h2>Monthly Stats</h2>
           <div className="monthly-stats-grid">
@@ -353,34 +382,6 @@ function App() {
             {loadingInsight ? "Getting Insight..." : "Get AI Budget Insight"}
           </button>
           {aiInsight && <div className="ai-insight-box">{aiInsight}</div>}
-        </div>
-
-        <div className="charts">
-          <div className="chart">
-            <h3>Spending by Category</h3>
-            <PieChart width={600} height={400}>
-              <Pie
-                data={pieData}
-                cx="50%"
-                cy="50%"
-                labelLine={false}
-                outerRadius={80}
-                fill="#8884d8"
-                dataKey="value"
-              >
-                {pieData.map((entry, index) => (
-                  <Cell
-                    key={`cell-${index}`}
-                    fill={colors[index % colors.length]}
-                  />
-                ))}
-              </Pie>
-              <Tooltip
-                labelStyle={{ color: "black" }}
-                itemStyle={{ color: "#333" }}
-              />
-            </PieChart>
-          </div>
         </div>
 
         <div className="transactions-section">
