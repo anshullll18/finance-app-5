@@ -12,7 +12,7 @@ A full-stack web application for tracking personal income and expenses with AI-p
 ## Prerequisites
 
 - Node.js (v14+)
-- MongoDB (local or Atlas)
+- MongoDB Atlas account (or local MongoDB)
 - Google Gemini API key
 
 ## Setup
@@ -34,10 +34,10 @@ touch .env
 
 Add the following to `.env`:
 ```env
-MONGODB_URI=mongodb://127.0.0.1:27017/finance-tracker
-JWT_SECRET=your-jwt-secret-key
+MONGODB_URI=mongodb+srv://username:password@cluster0.xxxxx.mongodb.net/finance-tracker?retryWrites=true&w=majority
+JWT_SECRET=your_super_secret_jwt_key_here_make_it_long_and_secure
 GEMINI_API_KEY=your-gemini-api-key
-PORT=5000
+PORT=5050
 ```
 
 ### 3. Frontend Setup
@@ -54,14 +54,13 @@ touch .env
 
 Add the following to `client/.env`:
 ```env
-REACT_APP_API_URL=http://localhost:5000/api
+REACT_APP_API_URL=http://localhost:5050/api
 ```
 
-### 4. Start MongoDB
-```bash
-# If using local MongoDB
-mongod
-```
+### 4. MongoDB Atlas Setup
+- Create a MongoDB Atlas account at https://cloud.mongodb.com
+- Create a new cluster and get your connection string
+- Replace `username`, `password`, and cluster URL in the MONGODB_URI
 
 ### 5. Run the Application
 
@@ -80,7 +79,7 @@ npm start
 
 The application will be available at:
 - Frontend: `http://localhost:3000`
-- Backend API: `http://localhost:5000`
+- Backend API: `http://localhost:5050`
 
 ## Features
 
@@ -112,7 +111,7 @@ The application will be available at:
 - `MONGODB_URI` - MongoDB connection string
 - `JWT_SECRET` - Secret key for JWT tokens
 - `GEMINI_API_KEY` - Google Gemini API key
-- `PORT` - Server port (default: 5000)
+- `PORT` - Server port (default: 5050)
 
 ### Frontend (client/.env)
 - `REACT_APP_API_URL` - Backend API URL
