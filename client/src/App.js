@@ -139,10 +139,21 @@ function App() {
     setStats({});
   };
 
-  const pieData = Object.entries(stats.categoryStats || {}).map(
-    ([name, value]) => ({ name, value })
-  );
   const colors = ["#8884d8", "#82ca9d", "#ffc658", "#ff7c7c", "#8dd1e1"];
+
+  const pieData = Object.entries(categorySummary || {}).map(
+    ([name, value]) => ({
+      name,
+      value,
+    })
+  );
+
+  // If pieData is empty, add a default 'No Spending' category
+  if (pieData.length === 0) {
+    pieData.push({ name: "No Spending", value: 1 });
+  }
+
+  console.log("pieData:", pieData);
 
   const handleExportCSV = () => {
     const headers = ["Date", "Type", "Category", "Description", "Amount"];
@@ -345,30 +356,31 @@ function App() {
         </div>
 
         <div className="charts">
-          {pieData.length > 0 && (
-            <div className="chart">
-              <h3>Spending by Category</h3>
-              <PieChart width={400} height={200}>
-                <Pie
-                  data={pieData}
-                  cx={150}
-                  cy={100}
-                  outerRadius={80}
-                  fill="#8884d8"
-                  dataKey="value"
-                  label={({ name, value }) => `${name}: $${value}`}
-                >
-                  {pieData.map((entry, index) => (
-                    <Cell
-                      key={`cell-${index}`}
-                      fill={colors[index % colors.length]}
-                    />
-                  ))}
-                </Pie>
-                <Tooltip />
-              </PieChart>
-            </div>
-          )}
+          <div className="chart">
+            <h3>Spending by Category</h3>
+            <PieChart width={600} height={400}>
+              <Pie
+                data={pieData}
+                cx="50%"
+                cy="50%"
+                labelLine={false}
+                outerRadius={80}
+                fill="#8884d8"
+                dataKey="value"
+              >
+                {pieData.map((entry, index) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={colors[index % colors.length]}
+                  />
+                ))}
+              </Pie>
+              <Tooltip
+                labelStyle={{ color: "black" }}
+                itemStyle={{ color: "#333" }}
+              />
+            </PieChart>
+          </div>
         </div>
 
         <div className="transactions-section">
