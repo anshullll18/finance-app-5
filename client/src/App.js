@@ -13,7 +13,11 @@ import {
 } from "recharts";
 import "./App.css";
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5050/api";
+// const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5050/api";
+const API_URL = process.env.NODE_ENV === 'production' 
+  ? '/api'  // Uses relative path in production (same domain)
+  : process.env.REACT_APP_API_URL || "http://localhost:5050/api";
+
 
 function App() {
   const [user, setUser] = useState(null);

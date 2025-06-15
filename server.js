@@ -16,7 +16,7 @@ app.use(
     origin: [
       "http://localhost:3000", 
       "http://localhost:3001",
-      process.env.FRONTEND_URL || "https://your-app-name.onrender.com"
+      "https://your-actual-render-url.onrender.com"  // Replace with your real URL
     ],
     credentials: true,
   })
