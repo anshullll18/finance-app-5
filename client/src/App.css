@@ -97,7 +97,7 @@ body {
   --text: #f5f7fa;
   --card-bg: #23272a;
   --card-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
-  --primary: #90cdf4;
+  --primary: #18a4fb;
   --primary-dark: #4299e1;
   --positive: #68d391;
   --negative: #fc8181;
@@ -282,7 +282,8 @@ header button {
 }
 
 .transaction-item:hover {
-  background: #f7fafc;
+  /* background: #3786bb; */
+  border: 1px solid #3786bb;
 }
 
 .transaction-item strong {
